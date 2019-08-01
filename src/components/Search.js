@@ -1,42 +1,57 @@
+import PropTypes from 'prop-types'
 import _ from 'lodash'
-import faker from 'faker'
+
 import React, { Component } from 'react'
-import { Search } from 'semantic-ui-react'
+import { Search,Label } from 'semantic-ui-react'
+import apis from '../api'
+const initialState = { isLoading: false, results: [], value: '',source:[] }
 
-const initialState = { isLoading: false, results: [], value: '' }
+const resultRenderer = ({ name }) => <Label content={name} />
 
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
+resultRenderer.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+}
+
 
 export default class SearchBox extends Component {
   state = initialState
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+  handleResultSelect = (e, { result }) => this.setState({ value: result.id })
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState)
+      if (this.state.value.length < 1) return this.setState({
+        isLoading:initialState.isLoading,
+        results:initialState.results,
+        value:initialState.value,
+      })
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
-
+      const isMatch = result => re.test(result.id)
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: _.filter(this.state.source, isMatch),
       })
+
     }, 300)
   }
 
+  componentWillMount(){
+    apis.loadShipments().then(resp=>{
+
+      this.setState({source:resp.data})
+      console.log("line_id",this.state.source)
+    })
+  }
   render() {
+
     const { isLoading, value, results } = this.state
 
     return (
+      <React.Fragment>
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
@@ -45,8 +60,11 @@ export default class SearchBox extends Component {
             })}
             results={results}
             value={value}
+            resultRenderer={resultRenderer}
             {...this.props}
           />
+
+        </React.Fragment>
     )
   }
 }
