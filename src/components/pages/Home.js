@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Grid,Segment,Pagination,Icon, Label, Menu, Table
+  Grid,Segment,Pagination,Icon, Label, Menu, Table,Header
 }  from 'semantic-ui-react'
 
 import apis from '../../api'
+import SearchBox from '../Search';
 
 export default class Home extends Component {
     state = {
@@ -46,8 +47,14 @@ export default class Home extends Component {
       const { pageIndex }=this.state
       console.log(pageIndex)
       return(
-        <Grid.Row centered columns={2}>
-        <Grid.Column >
+        <Grid.Row centered columns={3}>
+        <Grid.Column width={3}>
+          <SearchBox/>
+        </Grid.Column>
+        <Grid.Column width={10}>
+        <Segment>
+            <Header textAlign='centered' size='large' inline>All Shipments</Header>
+        </Segment>
         <Table celled striped stackable={true}>
           <Table.Header>
             <Table.Row>

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Search, Grid, Header, Segment } from 'semantic-ui-react'
+import { Search } from 'semantic-ui-react'
 
 const initialState = { isLoading: false, results: [], value: '' }
 
@@ -37,8 +37,6 @@ export default class SearchBox extends Component {
     const { isLoading, value, results } = this.state
 
     return (
-      <Grid>
-        <Grid.Column width={6}>
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
@@ -49,9 +47,6 @@ export default class SearchBox extends Component {
             value={value}
             {...this.props}
           />
-        </Grid.Column>
-        
-      </Grid>
     )
   }
 }
