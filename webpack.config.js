@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 console.log(__dirname)
 module.exports = {
   entry: './src/index.js',
@@ -41,16 +42,21 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // this handles the bundled .css output file
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: __dirname + '/dist/index.html'
     })
   ],
   devServer: {
+    historyApiFallback: true,
     contentBase: './dist',
     hot: true
   }
