@@ -8,8 +8,8 @@ const apis = {
   readShipment: id => api.get("shipments/" + id),
   loadShipments: () => api.get("shipments"),
   removeShipments: id => api.delete("shipments/" + id),
-  createShipment: category => api.post("shipments", shipment),
-  editShipment: category => api.put("shipments/" + shipment.id, shipment),
+  createShipment: shipment => api.post("shipments", shipment),
+  editShipment: shipment => api.put("shipments/" + shipment.id, shipment),
 
 };
 

@@ -8,7 +8,7 @@ import HeaderColumn from './Header';
 
 
 export default props => (
-  <Grid celled='internally' padded='horizontally' >
+  <Grid celled padded='vertically' >
   <Grid.Row>
     <HeaderColumn/>
   </Grid.Row>

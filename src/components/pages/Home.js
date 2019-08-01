@@ -53,7 +53,7 @@ export default class Home extends Component {
         </Grid.Column>
         <Grid.Column width={10}>
         <Segment>
-            <Header textAlign='centered' size='large' inline>All Shipments</Header>
+            <Header textAlign='center' size='large'>All Shipments</Header>
         </Segment>
         <Table celled striped stackable={true}>
           <Table.Header>
