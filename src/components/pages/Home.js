@@ -13,6 +13,7 @@ export default class Home extends Component {
       pageIndex:0,
       chunkSize:20
     }
+
     shiftPagePrev=()=>{
       if(this.state.pageIndex>0){
         this.setState((prevState)=>{
@@ -20,6 +21,7 @@ export default class Home extends Component {
         })
       }
     }
+
     shiftPageNext=()=>{
       const max=this.state.shipments.length-1
       if(this.state.pageIndex<max){
@@ -29,6 +31,20 @@ export default class Home extends Component {
     }
 
     }
+
+    filterRows=(id)=>{
+      this.props.history.push('/ShipmentDetail/'+id)
+    }
+
+    handleSort=(sortKey)=>{
+      const { shipments } = this.state;
+      let temp=[]
+      shipments.map(page=>{
+        temp.push(page.sort((a,b) => a[sortKey].localeCompare(b[sortKey])))
+      })
+      this.setState({shipment:temp})
+    }
+
     componentWillMount(){
       apis.loadShipments().then(resp=>{
         const {shipments,chunkSize} =this.state
@@ -48,7 +64,7 @@ export default class Home extends Component {
       return(
         <Grid.Row centered columns={3}>
         <Grid.Column width={3}>
-          <SearchBox/>
+          <SearchBox onChange={this.filterRows}/>
         </Grid.Column>
         <Grid.Column width={10}>
         <Segment>
@@ -57,11 +73,11 @@ export default class Home extends Component {
         <Table celled striped stackable={true}>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Shipment Id</Table.HeaderCell>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Status</Table.HeaderCell>
-              <Table.HeaderCell>Mode</Table.HeaderCell>
-              <Table.HeaderCell>User</Table.HeaderCell>
+              <Table.HeaderCell sorted onClick={e=>this.handleSort('id')}>Shipment Id  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell sorted onClick={e=>this.handleSort('name')}>Name  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell sorted onClick={e=>this.handleSort('status')}>Status  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell sorted onClick={e=>this.handleSort('mode')}>Mode  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell sorted onClick={e=>this.handleSort('userId')}>User  <Icon name='sort'/></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

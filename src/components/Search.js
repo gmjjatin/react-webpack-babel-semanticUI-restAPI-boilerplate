@@ -8,16 +8,16 @@ const initialState = { isLoading: false, results: [], value: '',source:[] }
 
 const resultRenderer = ({ name }) => <Label content={name} />
 
-resultRenderer.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-}
 
 
 export default class SearchBox extends Component {
   state = initialState
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.id })
+  handleResultSelect = (e, { result }) => {
+    this.setState({ value: result.id })
+
+    this.props.onChange(result.id);
+  }
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
@@ -35,6 +35,7 @@ export default class SearchBox extends Component {
         isLoading: false,
         results: _.filter(this.state.source, isMatch),
       })
+
 
     }, 300)
   }
@@ -58,10 +59,10 @@ export default class SearchBox extends Component {
             onSearchChange={_.debounce(this.handleSearchChange, 500, {
               leading: true,
             })}
+            resultRenderer={resultRenderer}
             results={results}
             value={value}
-            resultRenderer={resultRenderer}
-            {...this.props}
+
           />
 
         </React.Fragment>
