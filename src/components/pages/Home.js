@@ -39,13 +39,12 @@ export default class Home extends Component {
         this.setState({
           shipments:shipments
         })
-        console.log("line_item",this.state)
+
       })
 
     }
     render(){
       const { pageIndex }=this.state
-      console.log(pageIndex)
       return(
         <Grid.Row centered columns={3}>
         <Grid.Column width={3}>

@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {
-  Grid,Segment,Button,Icon,Header,List,Form
+  Grid,Segment,Button,Icon,Header,List,Form,Message
 }  from 'semantic-ui-react'
 
 import apis from '../../api'
@@ -10,7 +10,10 @@ export default class ShipmentDetail extends Component {
     state = {
       shipment:null,
       isNameEditOn:false,
-      name:''
+      name:'',
+      noIdPassed:false,
+      noResponse:false,
+
     }
 
     toggleEditName = () => {  this.setState({isNameEditOn:!this.state.isNameEditOn}) }
@@ -28,19 +31,32 @@ export default class ShipmentDetail extends Component {
     }
 
     componentWillMount(){
-      apis.readShipment(this.props.location.shipment_id).then(resp=>{
-        console.log("line_item",resp)
+
+      let id = this.props.match.params.id || this.props.location.shipment_id
+
+
+      if(id){
+        apis.readShipment(id)
+        .then(resp=>{
+
 
         this.setState({
           shipment:resp.data,
           name:resp.data.name
         })
-        console.log("line_item",this.state)
+
       })
+        .catch(error =>{
+          this.setState({noResponse:error})
+        })
+      }
+      else{
+        this.setState({noIdPassed:true})
+      }
 
     }
     render(){
-
+      const { shipment,name,noIdPassed,noResponse,isNameEditOn } = this.state
       return(
         <Grid.Row centered columns={3}>
           <Grid.Column width={2}>
@@ -54,142 +70,170 @@ export default class ShipmentDetail extends Component {
 
             </Segment>
             <Segment placeholder>
+            {noIdPassed &&
+              <Grid.Column width={16}>
+              <Message
+                 error
+                 header='No shipment id passed'
+                 list={[
+                   'Either a click a shipment id from previous page',
+                   'Or pass it in url like - /ShipmentDetail/S1000',
+                 ]}
+                />
+              </Grid.Column >
+            }
+            {noResponse &&
+              <Grid.Column width={16}>
+              <Message
+                 error
+                 header='No response from Server'
+                 list={[
+                   'Received no response from API server for this shipment id',
+                   'Reason - '+noResponse,
+                 ]}
+                />
+              </Grid.Column >
+            }
+            {
+              !noIdPassed && !noResponse && 
               <Grid columns={3}>
-                <Grid.Column width={16}>
-                {!this.state.isNameEditOn && this.state.shipment &&
-                  <Header>
-                    <Icon name='pencil' onClick={this.toggleEditName}/>
-                    <Header.Content>
-                      Name : {this.state.shipment.name}
-                    </Header.Content>
-                  </Header>
-                }
-                {this.state.isNameEditOn && this.state.shipment &&
-                  <Form onSubmit={this.handleSubmit}>
-                    <Form.Group widths={2}>
-                    <Icon name='close' size='big' onClick={this.toggleEditName}/>
-                      <Form.Input placeholder='Enter New Name' name='name' value={this.state.shipment.name} onChange={this.handleChange} />
-                      <Form.Button primary content='Submit' />
-                    </Form.Group>
-                  </Form>
-                }
-                </Grid.Column >
+              <Grid.Column width={16}>
+              {!isNameEditOn && shipment &&
+                <Header>
+                <Icon name='pencil' onClick={this.toggleEditName}/>
+                <Header.Content>
+                Name : {shipment.name}
+                </Header.Content>
+                </Header>
+              }
+              {isNameEditOn && shipment &&
+                <Form onSubmit={this.handleSubmit}>
+                <Form.Group widths={2}>
+                <Icon name='close' size='big' onClick={this.toggleEditName}/>
+                <Form.Input placeholder='Enter New Name' name='name' value={name} onChange={this.handleChange} />
+                <Form.Button primary content='Submit' />
+                </Form.Group>
+                </Form>
+              }
+              </Grid.Column >
 
-                <Grid.Column width={4}>
-                  { this.state.shipment &&
-                      <List>
-                      <List.Item >
-                      <Icon name='right triangle' />
-                      <List.Content>
-                      <List.Header>Mode</List.Header>
-                      <List.Description>
-                      {this.state.shipment.mode}
-                      </List.Description>
-                      </List.Content>
-                      </List.Item>
-                      <List.Item>
-                      <Icon name='right triangle' />
-                      <List.Content>
-                      <List.Header>type</List.Header>
-                      <List.Description>
-                      {this.state.shipment.type}
-                      </List.Description>
-                      </List.Content>
-                      </List.Item>
-                      <List.Item>
-                      <Icon name='right triangle' />
-                      <List.Content>
-                      <List.Header>Origin</List.Header>
-                      <List.Description>
-                      {this.state.shipment.origin}
-                      </List.Description>
-                      </List.Content>
-                      </List.Item>
-                      <List.Item>
-                      <Icon name='right triangle' />
-                      <List.Content>
-                      <List.Header>Destination</List.Header>
-                      <List.Description>
-                      {this.state.shipment.destination}
-                      </List.Description>
-                      </List.Content>
-                      </List.Item>
-                      <List.Item>
-                      <Icon name='right triangle' />
-                      <List.Content>
-                      <List.Header>Status</List.Header>
-                      <List.Description>
-                      {this.state.shipment.status}
-                      </List.Description>
-                      </List.Content>
-                      </List.Item>
-                      <List.Item>
-                      <Icon name='right triangle' />
-                      <List.Content>
-                      <List.Header>UserId</List.Header>
-                      <List.Description>
-                      {this.state.shipment.userId}
-                      </List.Description>
-                      </List.Content>
-                      </List.Item>
-                      </List>
+              <Grid.Column width={4}>
+              { shipment &&
+                <List>
+                <List.Item >
+                <Icon name='right triangle' />
+                <List.Content>
+                <List.Header>Mode</List.Header>
+                <List.Description>
+                {shipment.mode}
+                </List.Description>
+                </List.Content>
+                </List.Item>
+                <List.Item>
+                <Icon name='right triangle' />
+                <List.Content>
+                <List.Header>type</List.Header>
+                <List.Description>
+                {shipment.type}
+                </List.Description>
+                </List.Content>
+                </List.Item>
+                <List.Item>
+                <Icon name='right triangle' />
+                <List.Content>
+                <List.Header>Origin</List.Header>
+                <List.Description>
+                {shipment.origin}
+                </List.Description>
+                </List.Content>
+                </List.Item>
+                <List.Item>
+                <Icon name='right triangle' />
+                <List.Content>
+                <List.Header>Destination</List.Header>
+                <List.Description>
+                {shipment.destination}
+                </List.Description>
+                </List.Content>
+                </List.Item>
+                <List.Item>
+                <Icon name='right triangle' />
+                <List.Content>
+                <List.Header>Status</List.Header>
+                <List.Description>
+                {shipment.status}
+                </List.Description>
+                </List.Content>
+                </List.Item>
+                <List.Item>
+                <Icon name='right triangle' />
+                <List.Content>
+                <List.Header>UserId</List.Header>
+                <List.Description>
+                {shipment.userId}
+                </List.Description>
+                </List.Content>
+                </List.Item>
+                </List>
 
-                  }
-                </Grid.Column >
-                <Grid.Column width={2}>
-                  <Header as='h5'>Services</Header>
-                  {this.state.shipment && this.state.shipment.services.map((service,index)=>{
-                      return(
-                        <p key={index}>
-                        {service.type}
-                        </p>
-                      )
+              }
+              </Grid.Column >
+              <Grid.Column width={2}>
+              {shipment && <Header as='h5'>Services</Header>}
+              {shipment && shipment.services.map((service,index)=>{
+                return(
+                  <p key={index}>
+                  {service.type}
+                  </p>
+                )
 
-                    })}
-                </Grid.Column >
-                <Grid.Column width={6}>
-                <Header as='h5'> Cargo</Header>
-                {this.state.shipment && this.state.shipment.cargo.map((cargo,index)=>{
-                    return(
-                      <Segment>
-                        <List key={index}>
-                          <List.Item key={index+1}>
-                            <Icon name='right triangle' />
-                            <List.Content>
-                              <List.Header>Type</List.Header>
-                              <List.Description>
-                              {cargo.type}
-                              </List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item key={index+2}>
-                            <Icon name='right triangle' />
-                            <List.Content>
-                              <List.Header>Volume</List.Header>
-                              <List.Description>
-                              {cargo.volume}
-                              </List.Description>
-                            </List.Content>
-                          </List.Item>
-                          <List.Item key={index+3}>
-                            <Icon name='right triangle' />
-                            <List.Content>
-                              <List.Header>Description</List.Header>
-                              <List.Description>
-                              {cargo.description}
-                              </List.Description>
-                            </List.Content>
-                          </List.Item>
+              })}
+              </Grid.Column >
+              <Grid.Column width={6}>
+              {shipment && <Header as='h5'> Cargo</Header>}
+              {shipment && shipment.cargo.map((cargo,index)=>{
+                return(
+                  <Segment key={index}>
+                  <List key={index}>
+                  <List.Item key={index+1}>
+                  <Icon name='right triangle' />
+                  <List.Content>
+                  <List.Header>Type</List.Header>
+                  <List.Description>
+                  {cargo.type}
+                  </List.Description>
+                  </List.Content>
+                  </List.Item>
+                  <List.Item key={index+2}>
+                  <Icon name='right triangle' />
+                  <List.Content>
+                  <List.Header>Volume</List.Header>
+                  <List.Description>
+                  {cargo.volume}
+                  </List.Description>
+                  </List.Content>
+                  </List.Item>
+                  <List.Item key={index+3}>
+                  <Icon name='right triangle' />
+                  <List.Content>
+                  <List.Header>Description</List.Header>
+                  <List.Description>
+                  {cargo.description}
+                  </List.Description>
+                  </List.Content>
+                  </List.Item>
 
-                        </List>
-                      </Segment>
+                  </List>
+                  </Segment>
 
-                    )
+                )
 
-                  })}
-                </Grid.Column >
+              })}
+              </Grid.Column >
+
 
               </Grid>
+            }
             </Segment>
 
           </Grid.Column>

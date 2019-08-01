@@ -8,6 +8,7 @@ import ShipmentDetail from './pages/ShipmentDetail';
 export default () => (
   <Layout>
     <Switch>
+      <Route path="/ShipmentDetail/:id" component={ShipmentDetail} />
       <Route path="/ShipmentDetail" component={ShipmentDetail} />
       <Route path="/" component={Home} />
     </Switch>
