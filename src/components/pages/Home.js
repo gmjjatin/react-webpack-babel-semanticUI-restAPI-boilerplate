@@ -11,7 +11,8 @@ export default class Home extends Component {
     state = {
       shipments:[],
       pageIndex:0,
-      chunkSize:20
+      chunkSize:20,
+      ascSort:true
     }
 
     shiftPagePrev=()=>{
@@ -37,12 +38,20 @@ export default class Home extends Component {
     }
 
     handleSort=(sortKey)=>{
-      const { shipments } = this.state;
+      const { shipments,ascSort } = this.state;
       let temp=[]
-      shipments.map(page=>{
-        temp.push(page.sort((a,b) => a[sortKey].localeCompare(b[sortKey])))
-      })
-      this.setState({shipment:temp})
+      if(ascSort){
+        shipments.map(page=>{
+          temp.push(page.sort((a,b) => a[sortKey].localeCompare(b[sortKey])))
+        })
+        this.setState({shipment:temp,ascSort:!ascSort})
+      }
+      else{
+        shipments.map(page=>{
+          temp.push(page.sort((a,b) => b[sortKey].localeCompare(a[sortKey])))
+        })
+        this.setState({shipment:temp,ascSort:!ascSort})
+      }
     }
 
     componentWillMount(){
