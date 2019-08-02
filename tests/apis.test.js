@@ -37,7 +37,7 @@ describe('APIs Endpoint test', () => {
       .catch(error=>console.log(error))
 
     });
-  
+
   it('should update name of a specific shipment', () => {
       db.shipments[index].name='new name'
       apis.editShipment(db.shipments[index])
@@ -46,6 +46,7 @@ describe('APIs Endpoint test', () => {
         .then(resp=>{
           expect(resp.data).toEqual(db.shipments[index]);
         })
+        .catch(error=>console.log(error))
       })
       .catch(error=>console.log(error))
 

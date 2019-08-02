@@ -1,3 +1,6 @@
-.ui.form {
+@media (min-width:768px) {
+  .ui.form {
     max-width: 60%;
+  }
+
 }

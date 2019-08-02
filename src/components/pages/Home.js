@@ -72,10 +72,10 @@ export default class Home extends Component {
       const { pageIndex }=this.state
       return(
         <Grid.Row centered columns={3}>
-        <Grid.Column width={3}>
+        <Grid.Column mobile={16} tablet={5} computer={4}>
           <SearchBox onChange={this.filterRows}/>
         </Grid.Column>
-        <Grid.Column width={10}>
+        <Grid.Column mobile={16} tablet={11} computer={10}>
         <Segment>
             <Header textAlign='center' size='large'>All Shipments</Header>
         </Segment>

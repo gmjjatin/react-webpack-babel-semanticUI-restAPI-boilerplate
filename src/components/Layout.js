@@ -8,7 +8,7 @@ import HeaderColumn from './Header';
 
 
 export default props => (
-  <Grid celled padded='vertically' >
+  <Grid celled stackable padded='vertically' >
   <Grid.Row>
     <HeaderColumn/>
   </Grid.Row>

@@ -59,12 +59,12 @@ export default class ShipmentDetail extends Component {
       const { shipment,name,noIdPassed,noResponse,isNameEditOn } = this.state
       return(
         <Grid.Row centered columns={3}>
-          <Grid.Column width={2}>
+          <Grid.Column mobile={16} tablet={2} computer={2}>
             <Link to='/' >
               <Button floated='right' content='Back' icon='left arrow' basic  labelPosition='left' />
             </Link>
           </Grid.Column >
-          <Grid.Column width={10}>
+          <Grid.Column mobile={16} tablet={10} computer={10}>
             <Segment>
                 <Header textAlign='center' size='large' >Shipment Detail</Header>
 
@@ -95,9 +95,9 @@ export default class ShipmentDetail extends Component {
               </Grid.Column >
             }
             {
-              !noIdPassed && !noResponse && 
-              <Grid columns={3}>
-              <Grid.Column width={16}>
+              !noIdPassed && !noResponse &&
+              <Grid stackable columns={3}>
+              <Grid.Column mobile={16} tablet={16} computer={16}>
               {!isNameEditOn && shipment &&
                 <Header>
                 <Icon name='pencil' onClick={this.toggleEditName}/>
@@ -117,7 +117,7 @@ export default class ShipmentDetail extends Component {
               }
               </Grid.Column >
 
-              <Grid.Column width={4}>
+              <Grid.Column mobile={16} tablet={5} computer={4}>
               { shipment &&
                 <List>
                 <List.Item >
@@ -178,7 +178,7 @@ export default class ShipmentDetail extends Component {
 
               }
               </Grid.Column >
-              <Grid.Column width={2}>
+              <Grid.Column mobile={16} tablet={3} computer={3}>
               {shipment && <Header as='h5'>Services</Header>}
               {shipment && shipment.services.map((service,index)=>{
                 return(
@@ -189,7 +189,7 @@ export default class ShipmentDetail extends Component {
 
               })}
               </Grid.Column >
-              <Grid.Column width={6}>
+              <Grid.Column mobile={16} tablet={8} computer={6}>
               {shipment && <Header as='h5'> Cargo</Header>}
               {shipment && shipment.cargo.map((cargo,index)=>{
                 return(
