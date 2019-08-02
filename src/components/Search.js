@@ -44,7 +44,7 @@ export default class SearchBox extends Component {
     apis.loadShipments().then(resp=>{
 
       this.setState({source:resp.data})
-      console.log("line_id",this.state.source)
+      
     })
   }
   render() {
@@ -53,6 +53,7 @@ export default class SearchBox extends Component {
 
     return (
       <React.Fragment>
+        <Label basic content='Search Shipments by Id'/><br/><br/>
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect}

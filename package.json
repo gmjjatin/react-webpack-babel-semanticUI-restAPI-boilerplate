@@ -1,11 +1,11 @@
 {
-  "name": "minimal-react-webpack-babel-setup",
+  "name": "Freighthub-Challenge",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"webpack-dev-server --config ./webpack.config.js --mode development\" \"json-server -p 1337 db.json\"",
-    "test": "echo \"No test specified\" && exit 0",
+    "test": "jest --config ./jest.config.json",
     "server": "json-server --watch db.json --port 3000"
   },
   "keywords": [],
@@ -19,11 +19,13 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.1.0",
     "file-loader": "^4.1.0",
+    "jest": "^24.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.11.1",
+    "react-test-renderer": "^16.8.6",
     "style-loader": "^0.23.1",
     "url-loader": "^2.1.0",
     "webpack": "^4.34.0",

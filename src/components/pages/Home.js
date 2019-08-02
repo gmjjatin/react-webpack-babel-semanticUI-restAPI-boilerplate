@@ -82,11 +82,11 @@ export default class Home extends Component {
         <Table celled striped stackable={true}>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell sorted onClick={e=>this.handleSort('id')}>Shipment Id  <Icon name='sort'/></Table.HeaderCell>
-              <Table.HeaderCell sorted onClick={e=>this.handleSort('name')}>Name  <Icon name='sort'/></Table.HeaderCell>
-              <Table.HeaderCell sorted onClick={e=>this.handleSort('status')}>Status  <Icon name='sort'/></Table.HeaderCell>
-              <Table.HeaderCell sorted onClick={e=>this.handleSort('mode')}>Mode  <Icon name='sort'/></Table.HeaderCell>
-              <Table.HeaderCell sorted onClick={e=>this.handleSort('userId')}>User  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell onClick={e=>this.handleSort('id')}>Shipment Id  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell onClick={e=>this.handleSort('name')}>Name  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell onClick={e=>this.handleSort('status')}>Status  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell onClick={e=>this.handleSort('mode')}>Mode  <Icon name='sort'/></Table.HeaderCell>
+              <Table.HeaderCell onClick={e=>this.handleSort('userId')}>User  <Icon name='sort'/></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
