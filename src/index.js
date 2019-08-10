@@ -8,7 +8,7 @@ import './styles/forms.css'
 
 ReactDOM.render(
   <BrowserRouter>
-    <App  />
+    <App newref={true} />
   </BrowserRouter>,
   document.getElementById('app')
 );

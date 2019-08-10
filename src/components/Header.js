@@ -5,7 +5,7 @@ import {
 
 const HeaderColumn = () =>
       <Grid.Column width={16}>
-        <Header>Freighthub Challenge</Header>
+        <Header>React-webpack-babel-semanticUI-restAPI-boilerplate</Header>
       </Grid.Column>
   ;
 

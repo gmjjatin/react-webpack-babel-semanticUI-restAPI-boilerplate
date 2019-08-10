@@ -2,7 +2,7 @@
   "shipments": [
     {
       "id": "S1000",
-      "name": "T-shirts(Summer2018) from Shanghai to Hamburg",
+      "name": "T-shirt(Summer2018) from Shanghai to Hamburgs",
       "cargo": [
         {
           "type": "Fabric",
@@ -62,7 +62,7 @@
     },
     {
       "id": "S1002",
-      "name": "PO89634, PO27X",
+      "name": "new name",
       "cargo": [
         {
           "type": "Bikes model 27X",
@@ -108,7 +108,7 @@
     },
     {
       "id": "S1004",
-      "name": "New Furnitures from Shengen",
+      "name": "new name",
       "cargo": [
         {
           "type": "Couch22 White",
@@ -213,7 +213,7 @@
     },
     {
       "id": "S1008",
-      "name": "Scooters",
+      "name": "new name",
       "cargo": [
         {
           "type": "Gororo",
@@ -236,7 +236,7 @@
     },
     {
       "id": "S1009",
-      "name": "Helmets",
+      "name": "new name",
       "cargo": [
         {
           "type": "HelmGoro",
@@ -259,7 +259,7 @@
     },
     {
       "id": "S1010",
-      "name": "Neukrit 5a Cable",
+      "name": "new name",
       "cargo": [
         {
           "type": "Neukrit5a",
@@ -305,7 +305,7 @@
     },
     {
       "id": "S1012",
-      "name": "T-shirts(Spring 2018) from Shanghai to Hamburg",
+      "name": "new name",
       "cargo": [
         {
           "type": "Fabric",
@@ -365,7 +365,7 @@
     },
     {
       "id": "S1014",
-      "name": "New Furnitures from Shengen(Rosewood)",
+      "name": "new name",
       "cargo": [
         {
           "type": "Couch22 White",
@@ -388,7 +388,7 @@
     },
     {
       "id": "S1015",
-      "name": "New Furnitures From Chittagong(Sisou)",
+      "name": "new name",
       "cargo": [
         {
           "type": "Couch22 White",
@@ -416,7 +416,7 @@
     },
     {
       "id": "S1016",
-      "name": "Vacuum Cleaners",
+      "name": "new name",
       "cargo": [
         {
           "type": "TVAC515",
@@ -516,7 +516,7 @@
     },
     {
       "id": "S1020",
-      "name": "Neukrit 5a Cable",
+      "name": "new name",
       "cargo": [
         {
           "type": "Neukrit5a",
@@ -590,7 +590,7 @@
     },
     {
       "id": "S1023",
-      "name": "New spring collection(2019)",
+      "name": "new name",
       "cargo": [
         {
           "type": "Furniture",

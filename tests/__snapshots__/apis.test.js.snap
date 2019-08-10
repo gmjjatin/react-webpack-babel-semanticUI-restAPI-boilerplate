@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component snapshot renders 1`] = `
+<div
+  className="ui celled vertically padded grid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="sixteen wide column"
+    >
+      <div
+        className="ui header"
+      >
+        Freighthub Challenge
+      </div>
+    </div>
+  </div>
+  <div
+    className="centered three column row"
+  >
+    <div
+      className="three wide column"
+    >
+      <div
+        className="ui basic label"
+        onClick={[Function]}
+      >
+        Search Shipments by Id
+      </div>
+      <br />
+      <br />
+      <div
+        className="ui search"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+      >
+        <div
+          className="ui icon input"
+        >
+          <input
+            autoComplete="off"
+            className="prompt"
+            onChange={[Function]}
+            onClick={[Function]}
+            tabIndex="0"
+            type="text"
+            value=""
+          />
+          <i
+            aria-hidden="true"
+            className="search icon"
+            onClick={[Function]}
+          />
+        </div>
+        <div
+          className="results transition"
+        >
+          <div
+            className="message empty"
+          >
+            <div
+              className="header"
+            >
+              No results found.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ten wide column"
+    >
+      <div
+        className="ui segment"
+      >
+        <div
+          className="ui large center aligned header"
+        >
+          All Shipments
+        </div>
+      </div>
+      <table
+        className="ui celled stackable striped table"
+      >
+        <thead
+          className=""
+        >
+          <tr
+            className=""
+          >
+            <th
+              className=""
+              onClick={[Function]}
+            >
+              Shipment Id  
+              <i
+                aria-hidden="true"
+                className="sort icon"
+                onClick={[Function]}
+              />
+            </th>
+            <th
+              className=""
+              onClick={[Function]}
+            >
+              Name  
+              <i
+                aria-hidden="true"
+                className="sort icon"
+                onClick={[Function]}
+              />
+            </th>
+            <th
+              className=""
+              onClick={[Function]}
+            >
+              Status  
+              <i
+                aria-hidden="true"
+                className="sort icon"
+                onClick={[Function]}
+              />
+            </th>
+            <th
+              className=""
+              onClick={[Function]}
+            >
+              Mode  
+              <i
+                aria-hidden="true"
+                className="sort icon"
+                onClick={[Function]}
+              />
+            </th>
+            <th
+              className=""
+              onClick={[Function]}
+            >
+              User  
+              <i
+                aria-hidden="true"
+                className="sort icon"
+                onClick={[Function]}
+              />
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          className=""
+        />
+        <tfoot
+          className=""
+        >
+          <tr
+            className=""
+          >
+            <th
+              className=""
+              colSpan="6"
+            >
+              <div
+                className="ui pagination right floated menu"
+              >
+                <a
+                  className="icon item"
+                  onClick={[Function]}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="chevron left icon"
+                    onClick={[Function]}
+                  />
+                </a>
+                <a
+                  className="icon item"
+                  onClick={[Function]}
+                >
+                  <i
+                    aria-hidden="true"
+                    className="chevron right icon"
+                    onClick={[Function]}
+                  />
+                </a>
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+`;
