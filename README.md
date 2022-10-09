@@ -9,4 +9,4 @@
 # Description
 Boiler plate with react , webpack , semanticUI and postCSS.
 
-It uses HTML5, CSS3.
+It uses HTML5, CSS3, js.
